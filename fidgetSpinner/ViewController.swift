@@ -39,14 +39,18 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         scene = SKScene(size: spinnerView.frame.size)
         scene.backgroundColor = UIColor.white
+        scene.scaleMode = .aspectFit
         spinnerView.presentScene(scene)
-        spinnerNode = SKSpriteNode(color: UIColor.gray, size: CGSize(width: spinnerView.frame.width/3, height: spinnerView.frame.height/3))
-        spinnerNode.anchorPoint = CGPoint.zero
+        spinnerNode = SKSpriteNode(color: UIColor.gray, size: CGSize(width: spinnerView.frame.width/1.2, height: spinnerView.frame.height/1.2))
         spinnerNode.physicsBody = SKPhysicsBody(rectangleOf: spinnerNode.size)
         spinnerNode.physicsBody?.affectedByGravity = false
-        spinnerNode.physicsBody?.angularDamping = 0.75
+        spinnerNode.physicsBody?.angularDamping = 0.35
+        let texture = SKTexture(image: #imageLiteral(resourceName: "fidget"))
+        
+        spinnerNode.texture = texture
         spinnerView.scene?.addChild(spinnerNode)
         spinnerNode.position = CGPoint(x: scene.frame.width/2, y: scene.frame.height/2)
+        print(spinnerNode.size)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -90,7 +94,7 @@ private extension ViewController {
 //                        self.yLabel.text = "yaw: \(yawDegrees)"
                         
                         self.xLabel.text = "acceleration: \(data.userAcceleration.x)"
-                        if data.userAcceleration.x < -1.5 {
+                        if data.userAcceleration.x < -1.0 {
                             self.spinnerNode.physicsBody?.applyAngularImpulse(CGFloat(data.userAcceleration.x))
                         }
                     }
