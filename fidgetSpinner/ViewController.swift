@@ -13,11 +13,7 @@ import SpriteKit
 class ViewController: UIViewController {
     
     var motionManager = CMMotionManager()
-    var initialAttitude: CMAttitude?
-    var isSpinningClockwise = true
-    var spinningStarted = false
     var spinCount = 0
-    var previousDegrees: Double = 0
     var scene = SKScene()
     var spinnerNode = SKSpriteNode()
 
@@ -45,22 +41,18 @@ class ViewController: UIViewController {
         motionManager.stopDeviceMotionUpdates()
     }
     
-
-    @IBAction func startButtonTapped() {
-        initialAttitude = nil
-        spinningStarted = true
-        configureMotionManager()
-    }
 }
 
 private extension ViewController {
     
     func setupScene() {
         scene = SKScene(size: spinnerView.frame.size)
-        scene.backgroundColor = UIColor.white
+        scene.backgroundColor = UIColor.clear
         scene.scaleMode = .aspectFill
+        
         spinnerView.layer.borderColor = nil
         spinnerView.presentScene(scene)
+        
         spinnerNode = SKSpriteNode(color: UIColor.gray, size: CGSize(width: spinnerView.frame.width/1.2, height: spinnerView.frame.height/1.2))
         spinnerNode.physicsBody = SKPhysicsBody(rectangleOf: spinnerNode.size)
         spinnerNode.physicsBody?.affectedByGravity = false
@@ -84,37 +76,21 @@ private extension ViewController {
         if motionManager.isDeviceMotionAvailable {
             motionManager.deviceMotionUpdateInterval = 0.02
             let queue = OperationQueue()
-            motionManager.startDeviceMotionUpdates(to: queue, withHandler: { (data, error) in
+            motionManager.startDeviceMotionUpdates(to: queue, withHandler: { data, error in
                 guard let data = data else { return }
                 
-                if let initialAttitude = self.initialAttitude {
-                    // translate the attitude
-                    data.attitude.multiply(byInverseOf: initialAttitude)
-                    let yawDegrees = data.attitude.yaw.degrees()
-                    let rotation = atan2(data.gravity.x, data.gravity.y) - Double.pi
+                OperationQueue.main.addOperation {
                     
-                    if yawDegrees + self.previousDegrees >= 360 && yawDegrees > self.previousDegrees {
-                        self.spinCount += 1
-                        self.previousDegrees = 0
+                    if data.userAcceleration.x < -0.2 {
+                        self.spinnerNode.physicsBody?.applyAngularImpulse(CGFloat(data.userAcceleration.x) * 50)
+                    }
+                    if let physicsBody = self.spinnerNode.physicsBody {
+                        let mph = abs(Int(physicsBody.angularVelocity * 2.24))
+                        self.yLabel.text = "\(mph) MPH"
                     }
                     
-                    OperationQueue.main.addOperation {
-//                        self.spinnerView.transform = CGAffineTransform(rotationAngle: CGFloat(data.attitude.yaw))
-//                        self.zLabel.text = "spins: \(self.spinCount)"
-//                        self.xLabel.text = "previous: \(self.previousDegrees)"
-//                        self.yLabel.text = "yaw: \(yawDegrees)"
-                        
-                        self.xLabel.text = "acceleration: \(data.userAcceleration.x)"
-                        if data.userAcceleration.x < -1.0 {
-                            self.spinnerNode.physicsBody?.applyAngularImpulse(CGFloat(data.userAcceleration.x) + 100)
-                        }
-                    }
-
-                    if yawDegrees > self.previousDegrees && self.previousDegrees - yawDegrees < 20 {
-                        self.previousDegrees = yawDegrees
-                    }
-                } else {
-                    self.initialAttitude = self.motionManager.deviceMotion?.attitude
+                    self.xLabel.text = "\(self.spinnerNode.zRotation)"
+                    self.zLabel.text = ""
                 }
                 
             })

@@ -41,16 +41,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7OP-R7-WeO">
-                                <rect key="frame" x="156" y="617" width="62" height="30"/>
-                                <state key="normal" title="Calibrate"/>
-                                <connections>
-                                    <action selector="startButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="y0j-1P-7SU"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OjT-1u-HBs" customClass="SKView">
                                 <rect key="frame" x="-4" y="272" width="383" height="383"/>
-                                <color key="backgroundColor" red="0.001953125" green="0.78615993923611116" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OjT-1u-HBs" secondAttribute="height" multiplier="1:1" id="SZy-Oe-lhH"/>
                                 </constraints>
@@ -62,18 +55,15 @@
                             <constraint firstItem="OjT-1u-HBs" firstAttribute="top" secondItem="7hL-c6-23s" secondAttribute="bottom" constant="40" id="EzE-Oc-3fp"/>
                             <constraint firstItem="7hL-c6-23s" firstAttribute="top" secondItem="NSi-6A-Z90" secondAttribute="bottom" constant="65" id="Ir3-Zg-SaF"/>
                             <constraint firstItem="OjT-1u-HBs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Kjl-0q-Gln"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7OP-R7-WeO" secondAttribute="bottom" constant="20" id="WjP-WJ-P0d"/>
                             <constraint firstItem="7hL-c6-23s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X1d-WE-EC9"/>
                             <constraint firstItem="NSi-6A-Z90" firstAttribute="top" secondItem="fzy-2Y-Ll7" secondAttribute="bottom" constant="64" id="YmS-gQ-Hcb"/>
                             <constraint firstItem="fzy-2Y-Ll7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="bZu-0I-z1R"/>
                             <constraint firstItem="NSi-6A-Z90" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dVE-6R-mQA"/>
                             <constraint firstItem="OjT-1u-HBs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fSM-BY-1y8"/>
-                            <constraint firstItem="7OP-R7-WeO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hQe-JM-T7K"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="spinnerView" destination="OjT-1u-HBs" id="ygB-Fj-zlO"/>
-                        <outlet property="startButton" destination="7OP-R7-WeO" id="3fN-GG-hnL"/>
                         <outlet property="xLabel" destination="fzy-2Y-Ll7" id="TvL-fd-vPl"/>
                         <outlet property="yLabel" destination="NSi-6A-Z90" id="deb-eP-3ab"/>
                         <outlet property="zLabel" destination="7hL-c6-23s" id="FT3-Lg-uuu"/>
