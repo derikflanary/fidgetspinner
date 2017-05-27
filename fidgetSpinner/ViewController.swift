@@ -37,20 +37,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        scene = SKScene(size: spinnerView.frame.size)
-        scene.backgroundColor = UIColor.white
-        scene.scaleMode = .aspectFit
-        spinnerView.presentScene(scene)
-        spinnerNode = SKSpriteNode(color: UIColor.gray, size: CGSize(width: spinnerView.frame.width/1.2, height: spinnerView.frame.height/1.2))
-        spinnerNode.physicsBody = SKPhysicsBody(rectangleOf: spinnerNode.size)
-        spinnerNode.physicsBody?.affectedByGravity = false
-        spinnerNode.physicsBody?.angularDamping = 0.35
-        let texture = SKTexture(image: #imageLiteral(resourceName: "fidget"))
-        
-        spinnerNode.texture = texture
-        spinnerView.scene?.addChild(spinnerNode)
-        spinnerNode.position = CGPoint(x: scene.frame.width/2, y: scene.frame.height/2)
-        print(spinnerNode.size)
+        setupScene()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -68,10 +55,34 @@ class ViewController: UIViewController {
 
 private extension ViewController {
     
+    func setupScene() {
+        scene = SKScene(size: spinnerView.frame.size)
+        scene.backgroundColor = UIColor.white
+        scene.scaleMode = .aspectFill
+        spinnerView.layer.borderColor = nil
+        spinnerView.presentScene(scene)
+        spinnerNode = SKSpriteNode(color: UIColor.gray, size: CGSize(width: spinnerView.frame.width/1.2, height: spinnerView.frame.height/1.2))
+        spinnerNode.physicsBody = SKPhysicsBody(rectangleOf: spinnerNode.size)
+        spinnerNode.physicsBody?.affectedByGravity = false
+        spinnerNode.physicsBody?.angularDamping = 0.85
+        spinnerNode.physicsBody?.mass = 10
+        spinnerNode.anchorPoint = CGPoint(x: 0.5, y: 0.42)
+        let texture = SKTexture(image: #imageLiteral(resourceName: "fidget"))
+        spinnerNode.texture = texture
+        spinnerNode.position = CGPoint(x: scene.frame.width/2, y: scene.frame.height/2)
+        
+        let circleNode = SKShapeNode(circleOfRadius: spinnerView.frame.width/10)
+        circleNode.fillColor = UIColor.red
+        circleNode.position = CGPoint(x: scene.frame.width/2, y: scene.frame.height/2)
+        
+        spinnerView.scene?.addChild(spinnerNode)
+        spinnerView.scene?.addChild(circleNode)
+    }
+    
     func configureMotionManager() {
         motionManager = CMMotionManager()
         if motionManager.isDeviceMotionAvailable {
-            motionManager.deviceMotionUpdateInterval = 0.1
+            motionManager.deviceMotionUpdateInterval = 0.02
             let queue = OperationQueue()
             motionManager.startDeviceMotionUpdates(to: queue, withHandler: { (data, error) in
                 guard let data = data else { return }
@@ -95,7 +106,7 @@ private extension ViewController {
                         
                         self.xLabel.text = "acceleration: \(data.userAcceleration.x)"
                         if data.userAcceleration.x < -1.0 {
-                            self.spinnerNode.physicsBody?.applyAngularImpulse(CGFloat(data.userAcceleration.x))
+                            self.spinnerNode.physicsBody?.applyAngularImpulse(CGFloat(data.userAcceleration.x) + 100)
                         }
                     }
 
