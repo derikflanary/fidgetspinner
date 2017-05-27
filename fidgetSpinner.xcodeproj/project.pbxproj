@@ -12,6 +12,7 @@
 		EC522F2D1ED869B700848562 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC522F2B1ED869B700848562 /* Main.storyboard */; };
 		EC522F2F1ED869B700848562 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC522F2E1ED869B700848562 /* Assets.xcassets */; };
 		EC522F321ED869B700848562 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC522F301ED869B700848562 /* LaunchScreen.storyboard */; };
+		EC522F441EDA0EA800848562 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC522F431EDA0EA800848562 /* UIColor+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		EC522F2E1ED869B700848562 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC522F311ED869B700848562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC522F331ED869B700848562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC522F431EDA0EA800848562 /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				EC522F271ED869B700848562 /* AppDelegate.swift */,
 				EC522F291ED869B700848562 /* ViewController.swift */,
+				EC522F431EDA0EA800848562 /* UIColor+extension.swift */,
 				EC522F2B1ED869B700848562 /* Main.storyboard */,
 				EC522F2E1ED869B700848562 /* Assets.xcassets */,
 				EC522F301ED869B700848562 /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC522F441EDA0EA800848562 /* UIColor+extension.swift in Sources */,
 				EC522F2A1ED869B700848562 /* ViewController.swift in Sources */,
 				EC522F281ED869B700848562 /* AppDelegate.swift in Sources */,
 			);
