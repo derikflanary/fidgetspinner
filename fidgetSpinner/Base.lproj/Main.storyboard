@@ -33,6 +33,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLr-dV-X6d">
                                         <rect key="frame" x="152.5" y="152.5" width="77" height="77"/>
                                         <color key="backgroundColor" red="0.57741970490000005" green="0.78634982639999995" blue="0.9399414062" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="lYL-CK-nZH" appends="YES" id="LBc-mw-Oq9"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.75813802083333337" green="0.82044813368055558" blue="0.75632052951388884" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -119,6 +123,7 @@
                     </view>
                     <connections>
                         <outlet property="circleView" destination="GLr-dV-X6d" id="J4U-tB-MqT"/>
+                        <outlet property="longPressRecognizer" destination="lYL-CK-nZH" id="aI0-TY-VCj"/>
                         <outlet property="spinnerView" destination="OjT-1u-HBs" id="ygB-Fj-zlO"/>
                         <outlet property="topView" destination="Cg2-hu-C5O" id="9vp-po-YCh"/>
                         <outlet property="xLabel" destination="fzy-2Y-Ll7" id="TvL-fd-vPl"/>
@@ -126,6 +131,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="20" minimumPressDuration="0.0" id="lYL-CK-nZH">
+                    <connections>
+                        <action selector="circlePressed:" destination="BYZ-38-t0r" id="796-90-VCX"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="36" y="37.331334332833585"/>
         </scene>
