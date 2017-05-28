@@ -33,6 +33,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet var longPressRecognizer: UILongPressGestureRecognizer!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var restartButton: UIButton!
     
     
     // MARK: - View life cycle
@@ -45,6 +47,10 @@ class ViewController: UIViewController {
         self.xLabel.text = "\(0) spins/min"
         self.yLabel.text = String(format: "%.0f spins" , arguments: [0])
         circleView.backgroundColor = UIColor(red: 0.5, green: 0.69, blue: 0.86, alpha: 1.0)
+        topView.alpha = 0
+        spinnerView.alpha = 0
+        restartButton.alpha = 0
+        stopButton.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,9 +60,21 @@ class ViewController: UIViewController {
         circleView.clipsToBounds = true
         topView.layer.cornerRadius = 10
         topView.clipsToBounds = true
-        let tutorialShown = UserDefaults.standard.bool(forKey: "tutorialShown")
-        if !tutorialShown {
-            performSegue(withIdentifier: "presentOnboarding", sender: self)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.backgroundColor = UIColor.white
+        }) { done in
+            UIView.animate(withDuration: 0.5, animations: { 
+                self.topView.alpha = 1.0
+                self.spinnerView.alpha = 1.0
+                self.stopButton.alpha = 1.0
+                self.restartButton.alpha = 1.0
+            }, completion: { done in
+                let tutorialShown = UserDefaults.standard.bool(forKey: "tutorialShown")
+                if !tutorialShown {
+                    self.performSegue(withIdentifier: "presentOnboarding", sender: self)
+                }
+            })
         }
     }
     
