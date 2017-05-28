@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     var previousDegrees: Double = 0
     var isTouchingCircle = false
     var touchRecognizer = UITapGestureRecognizer()
+    var currentSpinner = Spinner()
 
     
     // MARK: - Interface properties
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureMotionManager()
+        configureMotionManager(with: currentSpinner)
         spinnerView.layer.cornerRadius = 5
         spinnerView.clipsToBounds = true
         self.xLabel.text = "\(0) spins/min"
@@ -55,7 +56,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupScene()
+        setupScene(with: currentSpinner)
         circleView.layer.cornerRadius = circleView.frame.width/2
         circleView.clipsToBounds = true
         topView.layer.cornerRadius = 10
@@ -89,7 +90,7 @@ class ViewController: UIViewController {
     @IBAction func stopButtonTapped() {
         spinnerNode.physicsBody?.angularVelocity = 0
         motionManager.stopDeviceMotionUpdates()
-        configureMotionManager()
+        configureMotionManager(with: currentSpinner)
     }
     
     
@@ -114,7 +115,7 @@ class ViewController: UIViewController {
             self.spinCount = 0
             self.totalDegrees = 0
             self.previousDegrees = 0
-            self.configureMotionManager()
+            self.configureMotionManager(with: self.currentSpinner)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(okAction)
@@ -130,7 +131,7 @@ class ViewController: UIViewController {
 
 private extension ViewController {
     
-    func setupScene() {
+    func setupScene(with spinner: Spinner) {
         scene = SKScene(size: spinnerView.frame.size)
         scene.backgroundColor = UIColor.clear
         scene.scaleMode = .aspectFill
@@ -142,9 +143,9 @@ private extension ViewController {
         spinnerNode.physicsBody = SKPhysicsBody(rectangleOf: spinnerNode.size)
         spinnerNode.physicsBody?.affectedByGravity = false
         spinnerNode.physicsBody?.angularDamping = 0.2
-        spinnerNode.physicsBody?.mass = 1.5
-        spinnerNode.anchorPoint = CGPoint(x: 0.5, y: 0.42)
-        let texture = SKTexture(image: #imageLiteral(resourceName: "fidget"))
+        spinnerNode.physicsBody?.mass = spinner.mass
+        spinnerNode.anchorPoint = CGPoint(x: 0.5, y: 0.445)
+        let texture = SKTexture(image: spinner.image)
         spinnerNode.texture = texture
         spinnerNode.position = CGPoint(x: scene.frame.width/2, y: scene.frame.height/2)
 
@@ -152,7 +153,7 @@ private extension ViewController {
         spinnerView.scene?.addChild(circleNode)
     }
     
-    func configureMotionManager() {
+    func configureMotionManager(with spinner: Spinner) {
         motionManager = CMMotionManager()
         if motionManager.isDeviceMotionAvailable {
             motionManager.deviceMotionUpdateInterval = 0.01
@@ -177,7 +178,7 @@ private extension ViewController {
                     if let physicsBody = self.spinnerNode.physicsBody {
                         let rpm = abs(Int(physicsBody.angularVelocity * 30/CGFloat.pi))
                         let diff: CGFloat = (CGFloat(rpm) * 0.001)
-                        self.circleView.backgroundColor = UIColor(red: 0.5 + diff, green: 0.69 + diff, blue: 0.86, alpha: 1.0)
+                        self.circleView.backgroundColor = UIColor(red: spinner.red + diff, green: spinner.green + diff, blue: spinner.blue, alpha: 1.0)
                         self.xLabel.text = "\(rpm) spins/min"
                     }
                     
