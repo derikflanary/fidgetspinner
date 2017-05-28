@@ -39,10 +39,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tutorialShown = UserDefaults.standard.bool(forKey: "tutorialShown")
-        if !tutorialShown {
-            performSegue(withIdentifier: "presentOnboarding", sender: self)
-        }
         configureMotionManager()
         spinnerView.layer.cornerRadius = 5
         spinnerView.clipsToBounds = true
@@ -58,6 +54,10 @@ class ViewController: UIViewController {
         circleView.clipsToBounds = true
         topView.layer.cornerRadius = 10
         topView.clipsToBounds = true
+        let tutorialShown = UserDefaults.standard.bool(forKey: "tutorialShown")
+        if !tutorialShown {
+            performSegue(withIdentifier: "presentOnboarding", sender: self)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -79,8 +79,10 @@ class ViewController: UIViewController {
         switch sender.state {
         case .began:
             isTouchingCircle = true
+            circleView.alpha = 0.8
         case .ended:
             isTouchingCircle = false
+            circleView.alpha = 1.0
         default:
             break
         }
@@ -88,7 +90,7 @@ class ViewController: UIViewController {
     
     @IBAction func restartButtonTapped() {
         let alert = UIAlertController(title: "Reset?", message: "Are you sure you want to reset your spins?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Yes", style: .default) { action in
+        let okAction = UIAlertAction(title: "Yes", style: .destructive) { action in
             self.spinnerNode.physicsBody?.angularVelocity = 0
             self.motionManager.stopDeviceMotionUpdates()
             self.spinCount = 0
@@ -99,7 +101,8 @@ class ViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
-        show(alert, sender: self)
+        present(alert, animated: true, completion: nil)
+        
     }
     
 }
@@ -108,8 +111,6 @@ class ViewController: UIViewController {
 // MARK: - Private functions
 
 private extension ViewController {
-    
-    
     
     func setupScene() {
         scene = SKScene(size: spinnerView.frame.size)

@@ -13,6 +13,8 @@ class OnboardingViewController: UIViewController {
     // MARK: - Properties
     
     var tapGestureRecognizer = UITapGestureRecognizer()
+    var upSwipeRecognizer = UISwipeGestureRecognizer()
+    var downSwipeRecognizer = UISwipeGestureRecognizer()
     
     @IBOutlet weak var transparentView: UIView!
     @IBOutlet weak var popView: UIView!
@@ -25,6 +27,12 @@ class OnboardingViewController: UIViewController {
         super.viewDidAppear(animated)
         tapGestureRecognizer.addTarget(self, action: #selector(viewTapped))
         transparentView.addGestureRecognizer(tapGestureRecognizer)
+        upSwipeRecognizer.addTarget(self, action: #selector(viewSwiped))
+        upSwipeRecognizer.direction = .up
+        downSwipeRecognizer.addTarget(self, action: #selector(viewSwiped))
+        downSwipeRecognizer.direction = .down
+        view.addGestureRecognizer(upSwipeRecognizer)
+        view.addGestureRecognizer(downSwipeRecognizer)
         popView.layer.cornerRadius = 10
         popView.clipsToBounds = true
         pageControl.updateCurrentPageDisplay()
@@ -48,7 +56,19 @@ class OnboardingViewController: UIViewController {
     
     // MARK: - Actions
     
+    @IBAction func exitButtonTapped() {
+        dismiss()
+    }
+    
     func viewTapped() {
+        dismiss()
+    }
+    
+    func viewSwiped() {
+        dismiss()
+    }
+    
+    func dismiss() {
         UIView.animate(withDuration: 0.25, animations: {
             self.transparentView.alpha = 0
         }, completion: { (done) in
