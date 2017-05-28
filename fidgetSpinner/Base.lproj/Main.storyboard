@@ -13,6 +13,46 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="Y7J-p9-hvb">
+            <objects>
+                <viewController id="FXx-Xv-zvh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CP6-uV-VJ5"/>
+                        <viewControllerLayoutGuide type="bottom" id="3Rg-uM-th2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G84-6J-HQl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More spinners coming soon." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTr-7P-A01">
+                                <rect key="frame" x="36" y="320" width="303" height="27.5"/>
+                                <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZTr-7P-A01" firstAttribute="centerY" secondItem="G84-6J-HQl" secondAttribute="centerY" id="3Rn-5a-qFB"/>
+                            <constraint firstItem="ZTr-7P-A01" firstAttribute="centerX" secondItem="G84-6J-HQl" secondAttribute="centerX" id="FOo-QX-67r"/>
+                            <constraint firstItem="ZTr-7P-A01" firstAttribute="leading" secondItem="G84-6J-HQl" secondAttribute="leadingMargin" constant="20" id="MJT-O5-sjc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZTr-7P-A01" secondAttribute="trailing" constant="20" id="N9v-df-ydJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IAF-cI-4gi">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="zhh-jp-GnM">
+                            <connections>
+                                <segue destination="vbc-lt-2GB" kind="unwind" unwindAction="unwindToMain:" id="tBs-nK-3pb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xmF-So-lZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vbc-lt-2GB" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1917.5999999999999" y="-713.79310344827593"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="fidgetSpinner" customModuleProvider="target" sceneMemberID="viewController">
@@ -106,6 +146,22 @@
                                     <action selector="stopButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="zLV-E9-13o"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc7-ia-n1W">
+                                <rect key="frame" x="167" y="28" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="8U0-BS-1No"/>
+                                    <constraint firstAttribute="height" constant="40" id="Dph-QY-Bpr"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="fid">
+                                    <color key="titleColor" red="0.001953125" green="0.78615993920000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bvy-EF-Y7K"/>
+                                    <segue destination="GFf-cE-Mrj" kind="presentation" id="kYa-px-qbM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="gau-jg-ZPN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="3EY-Bg-pvG"/>
@@ -118,10 +174,12 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eTq-61-Z3f" secondAttribute="bottom" id="Pgc-TO-Klu"/>
                             <constraint firstItem="eTq-61-Z3f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QfD-sq-mSn"/>
                             <constraint firstAttribute="trailing" secondItem="Cg2-hu-C5O" secondAttribute="trailing" constant="48" id="SUg-H5-Mdj"/>
+                            <constraint firstItem="Kc7-ia-n1W" firstAttribute="top" secondItem="WCc-gu-NtR" secondAttribute="top" id="XYv-g3-EEF"/>
                             <constraint firstItem="eTq-61-Z3f" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="eXJ-LX-LYy"/>
                             <constraint firstItem="OjT-1u-HBs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fSM-BY-1y8"/>
                             <constraint firstItem="gau-jg-ZPN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="gIG-I6-dYf"/>
                             <constraint firstItem="OjT-1u-HBs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.3" id="xgE-Gt-8rh"/>
+                            <constraint firstItem="Kc7-ia-n1W" firstAttribute="centerX" secondItem="eTq-61-Z3f" secondAttribute="centerX" id="ybE-Ac-cTz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YgQ-yE-IHP"/>
@@ -130,6 +188,7 @@
                         <outlet property="longPressRecognizer" destination="lYL-CK-nZH" id="aI0-TY-VCj"/>
                         <outlet property="restartButton" destination="WCc-gu-NtR" id="YVk-lj-hQc"/>
                         <outlet property="spinnerView" destination="OjT-1u-HBs" id="ygB-Fj-zlO"/>
+                        <outlet property="spinnersButton" destination="Kc7-ia-n1W" id="XtJ-tq-xvf"/>
                         <outlet property="stopButton" destination="gau-jg-ZPN" id="6Nt-Dm-uQx"/>
                         <outlet property="topView" destination="Cg2-hu-C5O" id="9vp-po-YCh"/>
                         <outlet property="xLabel" destination="fzy-2Y-Ll7" id="TvL-fd-vPl"/>
@@ -334,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ez7-pz-XUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3320.8000000000002" y="-315.29235382308849"/>
+            <point key="canvasLocation" x="4260" y="-315.29235382308849"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="97P-gz-9cf">
@@ -355,10 +414,29 @@
             </objects>
             <point key="canvasLocation" x="36" y="37.331334332833585"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xzi-T5-Mlf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GFf-cE-Mrj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F2g-4A-Pcx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FXx-Xv-zvh" kind="relationship" relationship="rootViewController" id="Rqh-C4-gXq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Lu-Oy-3eH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="978.39999999999998" y="-713.79310344827593"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back2" width="414" height="736"/>
         <image name="exit" width="44" height="44"/>
+        <image name="fid" width="555" height="511"/>
         <image name="restart" width="46" height="46"/>
         <image name="stop" width="37" height="50"/>
         <image name="tutorial1" width="578" height="600"/>

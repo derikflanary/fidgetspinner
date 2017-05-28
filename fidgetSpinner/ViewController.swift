@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     @IBOutlet var longPressRecognizer: UILongPressGestureRecognizer!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var restartButton: UIButton!
+    @IBOutlet weak var spinnersButton: UIButton!
     
     
     // MARK: - View life cycle
@@ -52,6 +53,7 @@ class ViewController: UIViewController {
         spinnerView.alpha = 0
         restartButton.alpha = 0
         stopButton.alpha = 0
+        spinnersButton.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,6 +72,7 @@ class ViewController: UIViewController {
                 self.spinnerView.alpha = 1.0
                 self.stopButton.alpha = 1.0
                 self.restartButton.alpha = 1.0
+                self.spinnersButton.alpha = 1.0
             }, completion: { done in
                 let tutorialShown = UserDefaults.standard.bool(forKey: "tutorialShown")
                 if !tutorialShown {
@@ -123,6 +126,8 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
         
     }
+    
+    @IBAction func unwindToMain(_ segue: UIStoryboardSegue) { }
     
 }
 
