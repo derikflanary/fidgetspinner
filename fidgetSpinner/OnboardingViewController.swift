@@ -52,6 +52,7 @@ class OnboardingViewController: UIViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.transparentView.alpha = 0
         }, completion: { (done) in
+            UserDefaults.standard.set(true, forKey: "tutorialShown")
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         })
     }

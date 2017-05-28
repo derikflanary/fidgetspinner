@@ -39,8 +39,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let hasLaunched = UserDefaults.standard.bool(forKey: "hasLaunched")
-        if hasLaunched {
+        let tutorialShown = UserDefaults.standard.bool(forKey: "tutorialShown")
+        if !tutorialShown {
             performSegue(withIdentifier: "presentOnboarding", sender: self)
         }
         configureMotionManager()
@@ -149,7 +149,9 @@ private extension ViewController {
                 OperationQueue.main.addOperation {
                     // Add impulse to spin
                     if data.userAcceleration.x < -0.2 && self.isTouchingCircle {
-                        self.spinnerNode.physicsBody?.applyAngularImpulse(CGFloat(data.userAcceleration.x) * -1)
+                        if let physicsBody = self.spinnerNode.physicsBody, physicsBody.angularVelocity < 60 {
+                            self.spinnerNode.physicsBody?.applyAngularImpulse(CGFloat(data.userAcceleration.x) * -1)
+                        }
                     }
                     
                     // Calculate rpm
