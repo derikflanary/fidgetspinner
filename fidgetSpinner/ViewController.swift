@@ -39,11 +39,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let hasLaunched = UserDefaults.standard.bool(forKey: "hasLaunched")
+        if hasLaunched {
+            performSegue(withIdentifier: "presentOnboarding", sender: self)
+        }
         configureMotionManager()
         spinnerView.layer.cornerRadius = 5
         spinnerView.clipsToBounds = true
         self.xLabel.text = "\(0) spins/min"
-        self.yLabel.text = String(format: "%.0f Total spins" , arguments: [0])
+        self.yLabel.text = String(format: "%.0f spins" , arguments: [0])
         circleView.backgroundColor = UIColor(red: 0.5, green: 0.69, blue: 0.86, alpha: 1.0)
     }
     
@@ -72,7 +76,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func circlePressed(_ sender: UILongPressGestureRecognizer) {
-        print("touched")
         switch sender.state {
         case .began:
             isTouchingCircle = true
@@ -105,6 +108,8 @@ class ViewController: UIViewController {
 // MARK: - Private functions
 
 private extension ViewController {
+    
+    
     
     func setupScene() {
         scene = SKScene(size: spinnerView.frame.size)
@@ -152,12 +157,12 @@ private extension ViewController {
                         let rpm = abs(Int(physicsBody.angularVelocity * 30/CGFloat.pi))
                         let diff: CGFloat = (CGFloat(rpm) * 0.001)
                         self.circleView.backgroundColor = UIColor(red: 0.5 + diff, green: 0.69 + diff, blue: 0.86, alpha: 1.0)
-                        self.xLabel.text = "\(rpm)/min"
+                        self.xLabel.text = "\(rpm) spins/min"
                     }
                     
                     // Calculate spins
                     let spins = self.totalDegrees / 360
-                    self.yLabel.text = String(format: "%.0f Spins" , arguments: [spins])
+                    self.yLabel.text = String(format: "%.0f spins" , arguments: [spins])
                 }
                 self.previousDegrees = degrees
             })
@@ -169,6 +174,7 @@ private extension ViewController {
 
 
 }
+
 
 extension Double {
     
@@ -183,13 +189,6 @@ extension Double {
 
 }
 
-extension CMAttitude {
-    
-    func magnitude() -> Double {
-        return sqrt(pow(self.roll, 2) + pow(self.yaw, 2) + pow(self.pitch, 2))
-    }
-    
-}
 
 
 
