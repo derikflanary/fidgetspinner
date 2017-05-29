@@ -9,6 +9,7 @@
 import UIKit
 import CoreMotion
 import SpriteKit
+import Social
 
 class ViewController: UIViewController {
     
@@ -46,6 +47,7 @@ class ViewController: UIViewController {
         configureMotionManager(with: currentSpinner)
         spinnerView.layer.cornerRadius = 5
         spinnerView.clipsToBounds = true
+        spinCount = UserDefaults.standard.integer(forKey: "spins")
         self.xLabel.text = "\(0) spins/min"
         self.yLabel.text = String(format: "%.0f spins" , arguments: [0])
         circleView.backgroundColor = UIColor(red: 0.5, green: 0.69, blue: 0.86, alpha: 1.0)
@@ -54,6 +56,7 @@ class ViewController: UIViewController {
         restartButton.alpha = 0
         stopButton.alpha = 0
         spinnersButton.alpha = 0
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,7 +70,7 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.view.backgroundColor = UIColor.white
         }) { done in
-            UIView.animate(withDuration: 0.5, animations: { 
+            UIView.animate(withDuration: 0.5, animations: {
                 self.topView.alpha = 1.0
                 self.spinnerView.alpha = 1.0
                 self.stopButton.alpha = 1.0
@@ -82,6 +85,11 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UserDefaults.standard.set(spinCount, forKey: "spins")
+    }
+
     
     // MARK: - Actions
     
@@ -111,20 +119,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func restartButtonTapped() {
-        let alert = UIAlertController(title: "Reset?", message: "Are you sure you want to reset your spins?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Yes", style: .destructive) { action in
-            self.spinnerNode.physicsBody?.angularVelocity = 0
-            self.motionManager.stopDeviceMotionUpdates()
-            self.spinCount = 0
-            self.totalDegrees = 0
-            self.previousDegrees = 0
-            self.configureMotionManager(with: self.currentSpinner)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
+        guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) else { return }
+        guard let socialController = SLComposeViewController(forServiceType: SLServiceTypeFacebook) else { return }
         
+        UIGraphicsBeginImageContext(view.frame.size)
+        self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        socialController.add(image)
+        socialController.setInitialText("I've spun my fidget phone \(spinCount) times already.")
+        self.present(socialController, animated: true, completion: nil)
     }
     
     @IBAction func unwindToMain(_ segue: UIStoryboardSegue) { }
@@ -196,9 +200,7 @@ private extension ViewController {
         } else {
             print("no motion")
         }
-
     }
-
 
 }
 
