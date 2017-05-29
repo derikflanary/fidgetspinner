@@ -16,7 +16,12 @@ class ViewController: UIViewController {
     // MARK: - Properties
     
     var motionManager = CMMotionManager()
-    var spinCount = 0
+    var spinCount = 0 {
+        didSet {
+            UserDefaults.standard.set(spinCount, forKey: "spins")
+        }
+    }
+    var oldSpins = UserDefaults.standard.integer(forKey: "spins")
     var scene = SKScene()
     var spinnerNode = SKSpriteNode()
     var circleNode = SKShapeNode()
@@ -85,11 +90,6 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        UserDefaults.standard.set(spinCount, forKey: "spins")
-    }
-
     
     // MARK: - Actions
     
@@ -192,7 +192,8 @@ private extension ViewController {
                     }
                     
                     // Calculate spins
-                    let spins = self.totalDegrees / 360
+                    let spins = (self.totalDegrees / 360) + Double(self.oldSpins)
+                    self.spinCount = Int(spins)
                     self.yLabel.text = String(format: "%.0f spins" , arguments: [spins])
                 }
                 self.previousDegrees = degrees
