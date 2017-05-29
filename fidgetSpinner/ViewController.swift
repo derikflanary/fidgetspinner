@@ -82,11 +82,6 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        motionManager.stopDeviceMotionUpdates()
-    }
-    
     
     // MARK: - Actions
     
@@ -102,9 +97,14 @@ class ViewController: UIViewController {
         case .began:
             isTouchingCircle = true
             circleView.alpha = 0.8
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
         case .ended:
             isTouchingCircle = false
             circleView.alpha = 1.0
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+
         default:
             break
         }
