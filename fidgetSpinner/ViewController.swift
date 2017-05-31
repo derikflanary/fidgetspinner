@@ -10,6 +10,7 @@ import UIKit
 import CoreMotion
 import SpriteKit
 import Social
+import GameKit
 
 class ViewController: UIViewController {
     
@@ -36,6 +37,8 @@ class ViewController: UIViewController {
             return Spinner()
         }
     }
+    var gcEnabled = false
+    var gcDefaultLeaderBoard = ""
 
     
     // MARK: - Interface properties
@@ -49,12 +52,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var spinnersButton: UIButton!
+    @IBOutlet weak var leaderboardButton: UIButton!
     
     
     // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        authenticateLocalPlayer()
         configureMotionManager(with: currentSpinner)
         spinnerView.layer.cornerRadius = 5
         spinnerView.clipsToBounds = true
@@ -68,7 +73,7 @@ class ViewController: UIViewController {
         restartButton.alpha = 0
         stopButton.alpha = 0
         spinnersButton.alpha = 0
-        
+        leaderboardButton.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +93,7 @@ class ViewController: UIViewController {
                 self.stopButton.alpha = 1.0
                 self.restartButton.alpha = 1.0
                 self.spinnersButton.alpha = 1.0
+                self.leaderboardButton.alpha = 1.0
             }, completion: { done in
                 let tutorialShown = UserDefaults.standard.bool(forKey: Keys.tutorialShown)
                 if !tutorialShown {
@@ -125,6 +131,27 @@ class ViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    @IBAction func leaderboardButtonTapped() {
+        let score = GKScore(leaderboardIdentifier: Keys.leaderBoardID)
+        score.value = Int64(spinCount)
+        GKScore.report([score]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Score submitted to your Leaderboard!")
+                OperationQueue.main.addOperation {
+                    let gcVC = GKGameCenterViewController()
+                    gcVC.gameCenterDelegate = self
+                    gcVC.viewState = .leaderboards
+                    gcVC.leaderboardIdentifier = Keys.leaderBoardID
+                    self.motionManager.stopDeviceMotionUpdates()
+                    self.present(gcVC, animated: true, completion: nil)
+                }
+            }
+        }
+        
     }
     
     @IBAction func spinnersButtonTapped() {
@@ -232,6 +259,44 @@ private extension ViewController {
         }
     }
 
+    
+    // MARK: - Game center
+    
+    func authenticateLocalPlayer() {
+        let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
+        
+        localPlayer.authenticateHandler = {(viewController, error) -> Void in
+            guard let viewController = viewController else { return }
+            self.present(viewController, animated: true, completion: nil)
+            self.motionManager.stopDeviceMotionUpdates()
+            if localPlayer.isAuthenticated {
+                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { leaderboardIdentifer, error in
+                    if error != nil {
+                        print(error as Any)
+                    } else if let leaderboardId = leaderboardIdentifer {
+                        self.gcDefaultLeaderBoard = leaderboardId
+                    }
+                })
+                
+            } else {
+                self.gcEnabled = false
+                print("Local player could not be authenticated!")
+                print(error as Any)
+            }
+        }
+    }
+}
+
+
+// MARK: - Game center controller delegate
+
+extension ViewController: GKGameCenterControllerDelegate {
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+        configureMotionManager(with: currentSpinner)
+    }
+    
 }
 
 

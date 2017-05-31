@@ -40,13 +40,21 @@ struct Spinner {
     }
 }
 
-let spinnerKeys = ["default", "usa", "army", "cat", "prez", "delic", "tribal", "hotdog", "mindtrip"]
+let spinnerKeys = ["default",
+                   "delic",
+                   "army",
+                   "tribal",
+                   "prez",
+                   "usa",
+                   "hotdog",
+                   "cat",
+                   "mindtrip"]
 
 let spinners: [String: Spinner] = [ "default": Spinner(),
-                                    "army": Spinner(title: "Sergeant", mass: 2.0, image: #imageLiteral(resourceName: "army"), red: 0.5, green: 0.5, blue: 0.5, cost: 100),
+                                    "army": Spinner(title: "Sergeant", mass: 2.0, image: #imageLiteral(resourceName: "army"), red: 0.5, green: 0.5, blue: 0.5, cost: 2000),
                                     "delic": Spinner(title: "Wild Thing", mass: 1.0, image: #imageLiteral(resourceName: "delic"), red: 0.5, green: 0.5, blue: 0.7, cost: 1000),
-                                    "prez": Spinner(title: "Prez", mass: 4.0, image: #imageLiteral(resourceName: "trump"), red: 0.5, green: 0.5, blue: 0.7, cost: 5000),
-                                    "tribal": Spinner(title: "Tribal", mass: 0.75, image: #imageLiteral(resourceName: "tribal"), red: 0.9, green: 0.5, blue: 0.7, cost: 10000),
+                                    "prez": Spinner(title: "Prez", mass: 4.0, image: #imageLiteral(resourceName: "trump"), red: 0.5, green: 0.5, blue: 0.7, cost: 10000),
+                                    "tribal": Spinner(title: "Tribal", mass: 0.75, image: #imageLiteral(resourceName: "tribal"), red: 0.9, green: 0.5, blue: 0.7, cost: 5000),
                                     "usa": Spinner(title: "USA", mass: 1.5, image: #imageLiteral(resourceName: "usa"), red: 0.5, green: 0.0, blue: 0.0, cost: 20000),
                                     "hotdog": Spinner(title: "Hotdogs", mass: 0.9, image: #imageLiteral(resourceName: "hotdog"), red: 0.9, green: 0.5, blue: 0.9, cost: 50000),
                                     "cat": Spinner(title: "Can Haz Catz", mass: 1.25, image: #imageLiteral(resourceName: "cat"), red: 0.5, green: 0.5, blue: 0.7, cost: 100000),

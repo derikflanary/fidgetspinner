@@ -13,6 +13,7 @@
 		EC2B41871EDE209C00429CF8 /* SpinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B41861EDE209C00429CF8 /* SpinnerCell.swift */; };
 		EC2B41891EDE22FB00429CF8 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B41881EDE22FB00429CF8 /* UITableViewCell+Extensions.swift */; };
 		EC2B418B1EDE28F500429CF8 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B418A1EDE28F500429CF8 /* Keys.swift */; };
+		EC2B418D1EDF8C9F00429CF8 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B418C1EDF8C9F00429CF8 /* UIViewController+Extensions.swift */; };
 		EC522F281ED869B700848562 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC522F271ED869B700848562 /* AppDelegate.swift */; };
 		EC522F2A1ED869B700848562 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC522F291ED869B700848562 /* ViewController.swift */; };
 		EC522F2D1ED869B700848562 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC522F2B1ED869B700848562 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		EC2B41861EDE209C00429CF8 /* SpinnerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerCell.swift; sourceTree = "<group>"; };
 		EC2B41881EDE22FB00429CF8 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		EC2B418A1EDE28F500429CF8 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		EC2B418C1EDF8C9F00429CF8 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		EC522F241ED869B700848562 /* fidgetSpinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fidgetSpinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC522F271ED869B700848562 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC522F291ED869B700848562 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				EC522F4B1EDB849500848562 /* Spinner.swift */,
 				EC2B418A1EDE28F500429CF8 /* Keys.swift */,
 				EC2B41881EDE22FB00429CF8 /* UITableViewCell+Extensions.swift */,
+				EC2B418C1EDF8C9F00429CF8 /* UIViewController+Extensions.swift */,
 				EC522F2B1ED869B700848562 /* Main.storyboard */,
 				EC2B41801EDE1E6200429CF8 /* Assets.xcassets */,
 				EC522F301ED869B700848562 /* LaunchScreen.storyboard */,
@@ -167,6 +170,7 @@
 				EC2B41871EDE209C00429CF8 /* SpinnerCell.swift in Sources */,
 				EC2B41851EDE1FD600429CF8 /* SpinnersDataSource.swift in Sources */,
 				EC522F281ED869B700848562 /* AppDelegate.swift in Sources */,
+				EC2B418D1EDF8C9F00429CF8 /* UIViewController+Extensions.swift in Sources */,
 				EC2B41831EDE1F4900429CF8 /* SpinnersViewController.swift in Sources */,
 				EC522F4C1EDB849500848562 /* Spinner.swift in Sources */,
 				EC2B41891EDE22FB00429CF8 /* UITableViewCell+Extensions.swift in Sources */,

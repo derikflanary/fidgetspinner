@@ -227,76 +227,88 @@
                                     <constraint firstItem="fzy-2Y-Ll7" firstAttribute="centerX" secondItem="Cg2-hu-C5O" secondAttribute="centerX" id="yqN-4O-6m1"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCc-gu-NtR">
-                                <rect key="frame" x="16" y="28" width="32" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="Eyu-hR-orw"/>
-                                    <constraint firstAttribute="height" constant="40" id="mjn-Ac-z23"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="titleShadowOffset" width="2" height="2"/>
-                                <state key="normal" image="share">
-                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="restartButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="DO4-38-Hau"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gau-jg-ZPN">
-                                <rect key="frame" x="319" y="28" width="40" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="5qG-Ti-XF1"/>
-                                    <constraint firstAttribute="height" constant="40" id="Dem-GU-eg6"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="stop">
-                                    <color key="titleColor" red="0.001953125" green="0.78615993920000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="stopButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="zLV-E9-13o"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc7-ia-n1W">
-                                <rect key="frame" x="167" y="28" width="40" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="8U0-BS-1No"/>
-                                    <constraint firstAttribute="height" constant="40" id="Dph-QY-Bpr"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="fid">
-                                    <color key="titleColor" red="0.001953125" green="0.78615993920000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="spinnersButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Vu-tX-xsw"/>
-                                    <action selector="stopButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bvy-EF-Y7K"/>
-                                    <segue destination="GFf-cE-Mrj" kind="presentation" id="kYa-px-qbM"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="XsL-y2-Yt5">
+                                <rect key="frame" x="16" y="28" width="343" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCc-gu-NtR">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="Eyu-hR-orw"/>
+                                            <constraint firstAttribute="height" constant="40" id="mjn-Ac-z23"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="titleShadowOffset" width="2" height="2"/>
+                                        <state key="normal" image="share">
+                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="restartButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="DO4-38-Hau"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKd-XH-Dp2">
+                                        <rect key="frame" x="92.5" y="0.0" width="50" height="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="leader"/>
+                                        <connections>
+                                            <action selector="leaderboardButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="UhN-Qx-yHX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc7-ia-n1W">
+                                        <rect key="frame" x="202.5" y="0.0" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="8U0-BS-1No"/>
+                                            <constraint firstAttribute="height" constant="40" id="Dph-QY-Bpr"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="fid">
+                                            <color key="titleColor" red="0.001953125" green="0.78615993920000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="spinnersButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Vu-tX-xsw"/>
+                                            <action selector="stopButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bvy-EF-Y7K"/>
+                                            <segue destination="GFf-cE-Mrj" kind="presentation" id="kYa-px-qbM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gau-jg-ZPN">
+                                        <rect key="frame" x="303" y="0.0" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="5qG-Ti-XF1"/>
+                                            <constraint firstAttribute="height" constant="40" id="Dem-GU-eg6"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="stop">
+                                            <color key="titleColor" red="0.001953125" green="0.78615993920000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="zLV-E9-13o"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gau-jg-ZPN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="3EY-Bg-pvG"/>
+                            <constraint firstItem="XsL-y2-Yt5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="5se-un-QEi"/>
                             <constraint firstAttribute="trailing" secondItem="eTq-61-Z3f" secondAttribute="trailing" id="6PD-ai-LRA"/>
-                            <constraint firstItem="WCc-gu-NtR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="8sl-bv-q8u"/>
                             <constraint firstItem="Cg2-hu-C5O" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="DF9-0r-8cJ"/>
+                            <constraint firstItem="XsL-y2-Yt5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DMa-OP-XGi"/>
                             <constraint firstItem="Cg2-hu-C5O" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="48" id="F4N-d1-uF7"/>
-                            <constraint firstItem="WCc-gu-NtR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="KWS-SE-Eas"/>
                             <constraint firstItem="OjT-1u-HBs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Kjl-0q-Gln"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eTq-61-Z3f" secondAttribute="bottom" id="Pgc-TO-Klu"/>
                             <constraint firstItem="eTq-61-Z3f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QfD-sq-mSn"/>
                             <constraint firstAttribute="trailing" secondItem="Cg2-hu-C5O" secondAttribute="trailing" constant="48" id="SUg-H5-Mdj"/>
-                            <constraint firstItem="Kc7-ia-n1W" firstAttribute="top" secondItem="WCc-gu-NtR" secondAttribute="top" id="XYv-g3-EEF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XsL-y2-Yt5" secondAttribute="trailing" id="YRe-ic-8CH"/>
+                            <constraint firstItem="XsL-y2-Yt5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="ao3-UA-BWM"/>
                             <constraint firstItem="eTq-61-Z3f" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="eXJ-LX-LYy"/>
                             <constraint firstItem="OjT-1u-HBs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fSM-BY-1y8"/>
-                            <constraint firstItem="gau-jg-ZPN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="gIG-I6-dYf"/>
                             <constraint firstItem="OjT-1u-HBs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.3" id="xgE-Gt-8rh"/>
-                            <constraint firstItem="Kc7-ia-n1W" firstAttribute="centerX" secondItem="eTq-61-Z3f" secondAttribute="centerX" id="ybE-Ac-cTz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YgQ-yE-IHP"/>
                     <connections>
                         <outlet property="circleView" destination="GLr-dV-X6d" id="J4U-tB-MqT"/>
+                        <outlet property="leaderboardButton" destination="SKd-XH-Dp2" id="aWc-YZ-OkI"/>
                         <outlet property="longPressRecognizer" destination="lYL-CK-nZH" id="aI0-TY-VCj"/>
                         <outlet property="restartButton" destination="WCc-gu-NtR" id="YVk-lj-hQc"/>
                         <outlet property="spinnerView" destination="OjT-1u-HBs" id="ygB-Fj-zlO"/>
@@ -550,6 +562,7 @@
         <image name="exit" width="44" height="44"/>
         <image name="fid" width="555" height="511"/>
         <image name="fidget2" width="625" height="625"/>
+        <image name="leader" width="50" height="50"/>
         <image name="lockFilled" width="50" height="50"/>
         <image name="share" width="36" height="50"/>
         <image name="stop" width="37" height="50"/>

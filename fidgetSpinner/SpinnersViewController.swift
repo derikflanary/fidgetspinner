@@ -29,6 +29,7 @@ class SpinnersViewController: UIViewController {
         super.viewDidLoad()
         fetchAvailableProducts()
         if allSpinnersPurchased {
+            headerView.isHidden = true
             headerView.frame = CGRect.zero
         } else {
             unlockButton.layer.cornerRadius = 20
@@ -120,11 +121,20 @@ extension SpinnersViewController: SKPaymentTransactionObserver {
                 allSpinnersPurchased = true
                 UserDefaults.standard.set(true, forKey: Keys.allSpinnersPurchased)
                 tableViewDataSource.allSpinnersUnlocked = allSpinnersPurchased
+                headerView.isHidden = true
                 headerView.frame = CGRect.zero
                 tableView.reloadData()
-            case .failed:
-                SKPaymentQueue.default().finishTransaction(transaction)
+                showOkAlert(with: "All spinners successfully purchased", message: nil)
             case .restored:
+                SKPaymentQueue.default().finishTransaction(transaction)
+                allSpinnersPurchased = true
+                UserDefaults.standard.set(true, forKey: Keys.allSpinnersPurchased)
+                tableViewDataSource.allSpinnersUnlocked = allSpinnersPurchased
+                headerView.isHidden = true
+                headerView.frame = CGRect.zero
+                tableView.reloadData()
+                showOkAlert(with: "Purchases restored", message: nil)
+            case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             default:
                 break
@@ -133,12 +143,9 @@ extension SpinnersViewController: SKPaymentTransactionObserver {
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        allSpinnersPurchased = true
-        UserDefaults.standard.set(true, forKey: Keys.allSpinnersPurchased)
-        tableViewDataSource.allSpinnersUnlocked = allSpinnersPurchased
-        headerView.frame = CGRect.zero
-        tableView.reloadData()
+        print(error)
     }
+    
     
 }
 
