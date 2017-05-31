@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC2B41811EDE1E6200429CF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC2B41801EDE1E6200429CF8 /* Assets.xcassets */; };
+		EC2B41831EDE1F4900429CF8 /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B41821EDE1F4900429CF8 /* SpinnersViewController.swift */; };
+		EC2B41851EDE1FD600429CF8 /* SpinnersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B41841EDE1FD600429CF8 /* SpinnersDataSource.swift */; };
+		EC2B41871EDE209C00429CF8 /* SpinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B41861EDE209C00429CF8 /* SpinnerCell.swift */; };
+		EC2B41891EDE22FB00429CF8 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B41881EDE22FB00429CF8 /* UITableViewCell+Extensions.swift */; };
+		EC2B418B1EDE28F500429CF8 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B418A1EDE28F500429CF8 /* Keys.swift */; };
 		EC522F281ED869B700848562 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC522F271ED869B700848562 /* AppDelegate.swift */; };
 		EC522F2A1ED869B700848562 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC522F291ED869B700848562 /* ViewController.swift */; };
 		EC522F2D1ED869B700848562 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC522F2B1ED869B700848562 /* Main.storyboard */; };
-		EC522F2F1ED869B700848562 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC522F2E1ED869B700848562 /* Assets.xcassets */; };
 		EC522F321ED869B700848562 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC522F301ED869B700848562 /* LaunchScreen.storyboard */; };
 		EC522F481EDA5FB500848562 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC522F471EDA5FB500848562 /* OnboardingViewController.swift */; };
 		EC522F4A1EDA614C00848562 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC522F491EDA614C00848562 /* TutorialPageViewController.swift */; };
@@ -18,11 +23,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC2B41801EDE1E6200429CF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC2B41821EDE1F4900429CF8 /* SpinnersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnersViewController.swift; sourceTree = "<group>"; };
+		EC2B41841EDE1FD600429CF8 /* SpinnersDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnersDataSource.swift; sourceTree = "<group>"; };
+		EC2B41861EDE209C00429CF8 /* SpinnerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerCell.swift; sourceTree = "<group>"; };
+		EC2B41881EDE22FB00429CF8 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		EC2B418A1EDE28F500429CF8 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		EC522F241ED869B700848562 /* fidgetSpinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fidgetSpinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC522F271ED869B700848562 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC522F291ED869B700848562 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC522F2C1ED869B700848562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EC522F2E1ED869B700848562 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC522F311ED869B700848562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC522F331ED869B700848562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC522F471EDA5FB500848562 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -62,11 +72,16 @@
 			children = (
 				EC522F271ED869B700848562 /* AppDelegate.swift */,
 				EC522F291ED869B700848562 /* ViewController.swift */,
-				EC522F4B1EDB849500848562 /* Spinner.swift */,
 				EC522F471EDA5FB500848562 /* OnboardingViewController.swift */,
 				EC522F491EDA614C00848562 /* TutorialPageViewController.swift */,
+				EC2B41821EDE1F4900429CF8 /* SpinnersViewController.swift */,
+				EC2B41841EDE1FD600429CF8 /* SpinnersDataSource.swift */,
+				EC2B41861EDE209C00429CF8 /* SpinnerCell.swift */,
+				EC2B41881EDE22FB00429CF8 /* UITableViewCell+Extensions.swift */,
+				EC522F4B1EDB849500848562 /* Spinner.swift */,
+				EC2B418A1EDE28F500429CF8 /* Keys.swift */,
 				EC522F2B1ED869B700848562 /* Main.storyboard */,
-				EC522F2E1ED869B700848562 /* Assets.xcassets */,
+				EC2B41801EDE1E6200429CF8 /* Assets.xcassets */,
 				EC522F301ED869B700848562 /* LaunchScreen.storyboard */,
 				EC522F331ED869B700848562 /* Info.plist */,
 			);
@@ -134,7 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC522F321ED869B700848562 /* LaunchScreen.storyboard in Resources */,
-				EC522F2F1ED869B700848562 /* Assets.xcassets in Resources */,
+				EC2B41811EDE1E6200429CF8 /* Assets.xcassets in Resources */,
 				EC522F2D1ED869B700848562 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,8 +164,13 @@
 				EC522F4A1EDA614C00848562 /* TutorialPageViewController.swift in Sources */,
 				EC522F2A1ED869B700848562 /* ViewController.swift in Sources */,
 				EC522F481EDA5FB500848562 /* OnboardingViewController.swift in Sources */,
+				EC2B41871EDE209C00429CF8 /* SpinnerCell.swift in Sources */,
+				EC2B41851EDE1FD600429CF8 /* SpinnersDataSource.swift in Sources */,
 				EC522F281ED869B700848562 /* AppDelegate.swift in Sources */,
+				EC2B41831EDE1F4900429CF8 /* SpinnersViewController.swift in Sources */,
 				EC522F4C1EDB849500848562 /* Spinner.swift in Sources */,
+				EC2B41891EDE22FB00429CF8 /* UITableViewCell+Extensions.swift in Sources */,
+				EC2B418B1EDE28F500429CF8 /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +336,7 @@
 				EC522F381ED869B700848562 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

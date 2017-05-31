@@ -29,7 +29,13 @@ class ViewController: UIViewController {
     var previousDegrees: Double = 0
     var isTouchingCircle = false
     var touchRecognizer = UITapGestureRecognizer()
-    var currentSpinner = Spinner()
+    var currentSpinner: Spinner {
+        if let key = UserDefaults.standard.value(forKey: "spinner") as? String {
+            return spinners[key] ?? Spinner()
+        } else {
+            return Spinner()
+        }
+    }
 
     
     // MARK: - Interface properties
@@ -128,6 +134,15 @@ class ViewController: UIViewController {
         UIGraphicsEndImageContext()
         socialController.add(image)
         socialController.setInitialText("I've spun my fidget phone \(spinCount) times already.")
+        socialController.completionHandler = {
+            (result: SLComposeViewControllerResult) in
+            switch result {
+            case .cancelled:
+                print("cancelled")
+            case .done:
+                print("success")
+            }
+        }
         self.present(socialController, animated: true, completion: nil)
     }
     
@@ -151,7 +166,7 @@ private extension ViewController {
         spinnerNode = SKSpriteNode(color: UIColor.gray, size: CGSize(width: spinnerView.frame.width/1.2, height: spinnerView.frame.height/1.2))
         spinnerNode.physicsBody = SKPhysicsBody(rectangleOf: spinnerNode.size)
         spinnerNode.physicsBody?.affectedByGravity = false
-        spinnerNode.physicsBody?.angularDamping = 0.2
+        spinnerNode.physicsBody?.angularDamping = 0.1
         spinnerNode.physicsBody?.mass = spinner.mass
         spinnerNode.anchorPoint = CGPoint(x: 0.5, y: 0.445)
         let texture = SKTexture(image: spinner.image)

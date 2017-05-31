@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Spinners View Controller-->
         <scene sceneID="Y7J-p9-hvb">
             <objects>
-                <viewController id="FXx-Xv-zvh" sceneMemberID="viewController">
+                <viewController id="FXx-Xv-zvh" customClass="SpinnersViewController" customModule="fidgetSpinner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CP6-uV-VJ5"/>
                         <viewControllerLayoutGuide type="bottom" id="3Rg-uM-th2"/>
@@ -24,19 +24,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More spinners coming soon." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTr-7P-A01">
-                                <rect key="frame" x="36" y="320" width="303" height="27.5"/>
-                                <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="tLF-6q-GhQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SpinnerCell" rowHeight="80" id="EFN-so-tYi" customClass="SpinnerCell" customModule="fidgetSpinner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EFN-so-tYi" id="PhS-GS-Vax">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fidget2" translatesAutoresizingMaskIntoConstraints="NO" id="91l-bc-xqm">
+                                                    <rect key="frame" x="17" y="8" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="mra-dJ-udQ"/>
+                                                        <constraint firstAttribute="width" secondItem="91l-bc-xqm" secondAttribute="height" multiplier="1:1" id="xsf-di-6sf"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="spinner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcc-9x-ANt">
+                                                    <rect key="frame" x="89" y="29" width="278" height="23"/>
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Fcc-9x-ANt" firstAttribute="leading" secondItem="91l-bc-xqm" secondAttribute="trailing" constant="8" id="IB8-zM-1lK"/>
+                                                <constraint firstItem="91l-bc-xqm" firstAttribute="leading" secondItem="PhS-GS-Vax" secondAttribute="leading" constant="17" id="IJr-8E-ySd"/>
+                                                <constraint firstItem="Fcc-9x-ANt" firstAttribute="centerY" secondItem="91l-bc-xqm" secondAttribute="centerY" id="XwC-pO-DLS"/>
+                                                <constraint firstItem="91l-bc-xqm" firstAttribute="centerY" secondItem="PhS-GS-Vax" secondAttribute="centerY" id="ave-No-Mev"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Fcc-9x-ANt" secondAttribute="trailing" id="dlo-PN-Cv8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="spinnerImageView" destination="91l-bc-xqm" id="njl-k9-nIf"/>
+                                            <outlet property="titleLabel" destination="Fcc-9x-ANt" id="Sxy-8F-4Vu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="COc-KJ-gNo" id="fOf-vn-tCY"/>
+                                    <outlet property="delegate" destination="FXx-Xv-zvh" id="GNw-bA-0UZ"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZTr-7P-A01" firstAttribute="centerY" secondItem="G84-6J-HQl" secondAttribute="centerY" id="3Rn-5a-qFB"/>
-                            <constraint firstItem="ZTr-7P-A01" firstAttribute="centerX" secondItem="G84-6J-HQl" secondAttribute="centerX" id="FOo-QX-67r"/>
-                            <constraint firstItem="ZTr-7P-A01" firstAttribute="leading" secondItem="G84-6J-HQl" secondAttribute="leadingMargin" constant="20" id="MJT-O5-sjc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZTr-7P-A01" secondAttribute="trailing" constant="20" id="N9v-df-ydJ"/>
+                            <constraint firstAttribute="trailing" secondItem="tLF-6q-GhQ" secondAttribute="trailing" id="Jkz-Dn-XF9"/>
+                            <constraint firstItem="3Rg-uM-th2" firstAttribute="top" secondItem="tLF-6q-GhQ" secondAttribute="bottom" id="eee-BY-4F2"/>
+                            <constraint firstItem="tLF-6q-GhQ" firstAttribute="top" secondItem="G84-6J-HQl" secondAttribute="top" id="mwP-wb-upp"/>
+                            <constraint firstItem="tLF-6q-GhQ" firstAttribute="leading" secondItem="G84-6J-HQl" secondAttribute="leading" id="zxm-Qs-HB7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IAF-cI-4gi">
@@ -46,8 +84,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="tLF-6q-GhQ" id="EU9-Ar-mck"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xmF-So-lZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="COc-KJ-gNo" customClass="SpinnersDataSource" customModule="fidgetSpinner" customModuleProvider="target"/>
                 <exit id="vbc-lt-2GB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1917.5999999999999" y="-713.79310344827593"/>
@@ -437,6 +479,7 @@
         <image name="back2" width="414" height="736"/>
         <image name="exit" width="44" height="44"/>
         <image name="fid" width="555" height="511"/>
+        <image name="fidget2" width="625" height="625"/>
         <image name="share" width="36" height="50"/>
         <image name="stop" width="37" height="50"/>
         <image name="tutorial1" width="578" height="600"/>
