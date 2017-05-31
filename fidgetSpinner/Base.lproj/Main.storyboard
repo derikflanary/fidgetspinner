@@ -27,12 +27,58 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="tLF-6q-GhQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="ulc-nh-R9Z">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkL-rc-bbn">
+                                            <rect key="frame" x="29.5" y="8" width="316" height="40"/>
+                                            <color key="backgroundColor" red="0.001953125" green="0.78615993920000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="JTV-af-Cgq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="21"/>
+                                            <inset key="contentEdgeInsets" minX="22" minY="0.0" maxX="22" maxY="0.0"/>
+                                            <state key="normal" title="UNLOCK ALL SPINNERS">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="unlockAllSpinnersTapped" destination="FXx-Xv-zvh" eventType="touchUpInside" id="Ndi-CJ-cTv"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock all spinners now for just $0.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1C4-zr-YNJ">
+                                            <rect key="frame" x="61.5" y="56" width="252.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LtT-fl-8vK">
+                                            <rect key="frame" x="144.5" y="75.5" width="86" height="26"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <state key="normal" title="Restore Purchase">
+                                                <color key="titleColor" red="0.62745098040000002" green="0.65098039220000004" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="restorePurchaseButtonTapped" destination="FXx-Xv-zvh" eventType="touchUpInside" id="E2B-lj-dYj"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="LtT-fl-8vK" firstAttribute="top" secondItem="1C4-zr-YNJ" secondAttribute="bottom" id="2Aq-v9-JSd"/>
+                                        <constraint firstItem="1C4-zr-YNJ" firstAttribute="centerX" secondItem="RkL-rc-bbn" secondAttribute="centerX" id="3vU-q8-ej6"/>
+                                        <constraint firstItem="1C4-zr-YNJ" firstAttribute="top" secondItem="RkL-rc-bbn" secondAttribute="bottom" constant="8" id="6jA-0l-8FU"/>
+                                        <constraint firstItem="RkL-rc-bbn" firstAttribute="centerX" secondItem="ulc-nh-R9Z" secondAttribute="centerX" id="QNT-3P-mWZ"/>
+                                        <constraint firstItem="RkL-rc-bbn" firstAttribute="top" secondItem="ulc-nh-R9Z" secondAttribute="top" constant="8" id="kdf-pi-eMP"/>
+                                        <constraint firstItem="LtT-fl-8vK" firstAttribute="centerX" secondItem="ulc-nh-R9Z" secondAttribute="centerX" id="o0s-Dg-iCd"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SpinnerCell" rowHeight="80" id="EFN-so-tYi" customClass="SpinnerCell" customModule="fidgetSpinner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="157.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EFN-so-tYi" id="PhS-GS-Vax">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fidget2" translatesAutoresizingMaskIntoConstraints="NO" id="91l-bc-xqm">
@@ -48,18 +94,37 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock at 0 spins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-vv-9Bx">
+                                                    <rect key="frame" x="262" y="8" width="105" height="17.5"/>
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lockFilled" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-PE-BCP">
+                                                    <rect key="frame" x="162.5" y="14.5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="YHN-e8-65L"/>
+                                                        <constraint firstAttribute="width" constant="50" id="nQu-Ua-nvM"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Fcc-9x-ANt" firstAttribute="leading" secondItem="91l-bc-xqm" secondAttribute="trailing" constant="8" id="IB8-zM-1lK"/>
                                                 <constraint firstItem="91l-bc-xqm" firstAttribute="leading" secondItem="PhS-GS-Vax" secondAttribute="leading" constant="17" id="IJr-8E-ySd"/>
+                                                <constraint firstItem="hfU-PE-BCP" firstAttribute="centerX" secondItem="PhS-GS-Vax" secondAttribute="centerX" id="N4P-qn-ZOG"/>
+                                                <constraint firstItem="hfU-PE-BCP" firstAttribute="centerY" secondItem="PhS-GS-Vax" secondAttribute="centerY" id="N9Y-a1-EDb"/>
+                                                <constraint firstItem="Taa-vv-9Bx" firstAttribute="top" secondItem="91l-bc-xqm" secondAttribute="top" id="Pnq-Gi-n4V"/>
                                                 <constraint firstItem="Fcc-9x-ANt" firstAttribute="centerY" secondItem="91l-bc-xqm" secondAttribute="centerY" id="XwC-pO-DLS"/>
+                                                <constraint firstItem="Taa-vv-9Bx" firstAttribute="trailing" secondItem="Fcc-9x-ANt" secondAttribute="trailing" id="YHu-MD-shp"/>
                                                 <constraint firstItem="91l-bc-xqm" firstAttribute="centerY" secondItem="PhS-GS-Vax" secondAttribute="centerY" id="ave-No-Mev"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Fcc-9x-ANt" secondAttribute="trailing" id="dlo-PN-Cv8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="lockImageView" destination="hfU-PE-BCP" id="Gdg-R6-Ieu"/>
                                             <outlet property="spinnerImageView" destination="91l-bc-xqm" id="njl-k9-nIf"/>
                                             <outlet property="titleLabel" destination="Fcc-9x-ANt" id="Sxy-8F-4Vu"/>
+                                            <outlet property="unlockLabel" destination="Taa-vv-9Bx" id="1BL-8i-6T2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -85,7 +150,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="headerView" destination="ulc-nh-R9Z" id="SQk-Qc-vor"/>
+                        <outlet property="priceLabel" destination="1C4-zr-YNJ" id="Ba6-0q-LKa"/>
                         <outlet property="tableView" destination="tLF-6q-GhQ" id="EU9-Ar-mck"/>
+                        <outlet property="tableViewDataSource" destination="COc-KJ-gNo" id="JWY-GI-dpH"/>
+                        <outlet property="unlockButton" destination="RkL-rc-bbn" id="Eaz-Hg-3SE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xmF-So-lZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -200,6 +269,7 @@
                                     <color key="titleColor" red="0.001953125" green="0.78615993920000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="spinnersButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Vu-tX-xsw"/>
                                     <action selector="stopButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bvy-EF-Y7K"/>
                                     <segue destination="GFf-cE-Mrj" kind="presentation" id="kYa-px-qbM"/>
                                 </connections>
@@ -480,6 +550,7 @@
         <image name="exit" width="44" height="44"/>
         <image name="fid" width="555" height="511"/>
         <image name="fidget2" width="625" height="625"/>
+        <image name="lockFilled" width="50" height="50"/>
         <image name="share" width="36" height="50"/>
         <image name="stop" width="37" height="50"/>
         <image name="tutorial1" width="578" height="600"/>

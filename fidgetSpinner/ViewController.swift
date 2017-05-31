@@ -18,10 +18,10 @@ class ViewController: UIViewController {
     var motionManager = CMMotionManager()
     var spinCount = 0 {
         didSet {
-            UserDefaults.standard.set(spinCount, forKey: "spins")
+            UserDefaults.standard.set(spinCount, forKey: Keys.spins)
         }
     }
-    var oldSpins = UserDefaults.standard.integer(forKey: "spins")
+    var oldSpins = UserDefaults.standard.integer(forKey: Keys.spins)
     var scene = SKScene()
     var spinnerNode = SKSpriteNode()
     var circleNode = SKShapeNode()
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     var isTouchingCircle = false
     var touchRecognizer = UITapGestureRecognizer()
     var currentSpinner: Spinner {
-        if let key = UserDefaults.standard.value(forKey: "spinner") as? String {
+        if let key = UserDefaults.standard.value(forKey: Keys.spinner) as? String {
             return spinners[key] ?? Spinner()
         } else {
             return Spinner()
@@ -58,10 +58,11 @@ class ViewController: UIViewController {
         configureMotionManager(with: currentSpinner)
         spinnerView.layer.cornerRadius = 5
         spinnerView.clipsToBounds = true
-        spinCount = UserDefaults.standard.integer(forKey: "spins")
+        spinCount = UserDefaults.standard.integer(forKey: Keys.spins)
         self.xLabel.text = "\(0) spins/min"
         self.yLabel.text = String(format: "%.0f spins" , arguments: [0])
-        circleView.backgroundColor = UIColor(red: 0.5, green: 0.69, blue: 0.86, alpha: 1.0)
+        circleView.layer.borderWidth = 1.0
+        circleView.layer.borderColor = UIColor.darkGray.cgColor
         topView.alpha = 0
         spinnerView.alpha = 0
         restartButton.alpha = 0
@@ -88,7 +89,7 @@ class ViewController: UIViewController {
                 self.restartButton.alpha = 1.0
                 self.spinnersButton.alpha = 1.0
             }, completion: { done in
-                let tutorialShown = UserDefaults.standard.bool(forKey: "tutorialShown")
+                let tutorialShown = UserDefaults.standard.bool(forKey: Keys.tutorialShown)
                 if !tutorialShown {
                     self.performSegue(withIdentifier: "presentOnboarding", sender: self)
                 }
@@ -110,18 +111,24 @@ class ViewController: UIViewController {
         switch sender.state {
         case .began:
             isTouchingCircle = true
-            circleView.alpha = 0.8
+            circleView.alpha = 1.0
+            circleView.layer.borderColor = UIColor.black.cgColor
             let generator = UIImpactFeedbackGenerator(style: .medium)
             generator.impactOccurred()
         case .ended:
             isTouchingCircle = false
             circleView.alpha = 1.0
+            circleView.layer.borderColor = UIColor.darkGray.cgColor
             let generator = UIImpactFeedbackGenerator(style: .light)
             generator.impactOccurred()
 
         default:
             break
         }
+    }
+    
+    @IBAction func spinnersButtonTapped() {
+        motionManager.stopDeviceMotionUpdates()
     }
     
     @IBAction func restartButtonTapped() {
@@ -146,7 +153,9 @@ class ViewController: UIViewController {
         self.present(socialController, animated: true, completion: nil)
     }
     
-    @IBAction func unwindToMain(_ segue: UIStoryboardSegue) { }
+    @IBAction func unwindToMain(_ segue: UIStoryboardSegue) {
+        configureMotionManager(with: currentSpinner)
+    }
     
 }
 
@@ -177,6 +186,9 @@ private extension ViewController {
         spinnerView.scene?.addChild(circleNode)
     }
     
+    
+    // MARK: - Motion manager
+    
     func configureMotionManager(with spinner: Spinner) {
         motionManager = CMMotionManager()
         if motionManager.isDeviceMotionAvailable {
@@ -193,9 +205,11 @@ private extension ViewController {
                 OperationQueue.main.addOperation {
                     // Add impulse to spin
                     if data.userAcceleration.x < -0.2 && self.isTouchingCircle {
-                        if let physicsBody = self.spinnerNode.physicsBody, physicsBody.angularVelocity < 60 {
-                            self.spinnerNode.physicsBody?.applyAngularImpulse(CGFloat(data.userAcceleration.x) * -1)
+                        var x = CGFloat(data.userAcceleration.x * -1)
+                        if x > 1 {
+                            x = 1
                         }
+                        self.spinnerNode.physicsBody?.applyAngularImpulse(x)
                     }
                     
                     // Calculate rpm
@@ -233,7 +247,6 @@ extension Double {
     }
 
 }
-
 
 
 

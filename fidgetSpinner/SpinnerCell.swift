@@ -12,33 +12,24 @@ class SpinnerCell: UITableViewCell, ReusableView {
     
     @IBOutlet weak var spinnerImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var unlockLabel: UILabel!
+    @IBOutlet weak var lockImageView: UIImageView!
 
-    func configure(with spinner: Spinner?) {
+    func configure(with spinner: Spinner?, isUnlocked: Bool) {
         guard let spinner = spinner else { return }
         
         spinnerImageView.image = spinner.image
         titleLabel.text = spinner.title
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        if selected {
-            let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-            rotateAnimation.fromValue = 0.0
-            rotateAnimation.toValue = CGFloat.pi
-            rotateAnimation.duration = CFTimeInterval(HUGE)
-            rotateAnimation.delegate = self
-            spinnerImageView.layer.add(rotateAnimation, forKey: nil)
+        if isUnlocked {
+            contentView.alpha = 1.0
+            lockImageView.isHidden = true
+            unlockLabel.isHidden = true
         } else {
-            spinnerImageView.layer.removeAllAnimations()
+            contentView.alpha = 0.4
+            lockImageView.isHidden = false
+            unlockLabel.isHidden = false
+            unlockLabel.text = "Unlock at \(spinner.cost) spins"
         }
     }
-    
 
-}
-
-extension SpinnerCell: CAAnimationDelegate {
-    
-    
-    
 }

@@ -13,4 +13,7 @@ struct Keys {
     static let spins = "spins"
     static let spinner = "spinner"
     static let tutorialShown = "tutorialShown"
+    static let purchaseAllSpinnersID = "com.fidgetphone.all"
+    static let allSpinnersPurchased = "allSpinnersPurchased"
+    
 }
