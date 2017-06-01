@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         authenticateLocalPlayer()
-        configureMotionManager(with: currentSpinner)
+        configureMotionManager()
         spinnerView.layer.cornerRadius = 5
         spinnerView.clipsToBounds = true
         spinCount = UserDefaults.standard.integer(forKey: Keys.spins)
@@ -80,6 +80,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         setupScene(with: currentSpinner)
         circleView.layer.cornerRadius = circleView.frame.width/2
+        circleView.backgroundColor = currentSpinner.color
         circleView.clipsToBounds = true
         topView.layer.cornerRadius = 10
         topView.clipsToBounds = true
@@ -109,7 +110,7 @@ class ViewController: UIViewController {
     @IBAction func stopButtonTapped() {
         spinnerNode.physicsBody?.angularVelocity = 0
         motionManager.stopDeviceMotionUpdates()
-        configureMotionManager(with: currentSpinner)
+        configureMotionManager()
     }
     
     
@@ -118,40 +119,25 @@ class ViewController: UIViewController {
         case .began:
             isTouchingCircle = true
             circleView.alpha = 1.0
-            circleView.layer.borderColor = UIColor.black.cgColor
+            circleView.layer.borderColor = UIColor(white: 0.9, alpha: 1.0).cgColor
+            circleView.layer.borderWidth = 1.5
             let generator = UIImpactFeedbackGenerator(style: .medium)
             generator.impactOccurred()
         case .ended:
             isTouchingCircle = false
             circleView.alpha = 1.0
+            circleView.layer.borderWidth = 1.0
             circleView.layer.borderColor = UIColor.darkGray.cgColor
             let generator = UIImpactFeedbackGenerator(style: .light)
             generator.impactOccurred()
-
+            reportScore(shouldShowLeaderboard: false)
         default:
             break
         }
     }
     
     @IBAction func leaderboardButtonTapped() {
-        let score = GKScore(leaderboardIdentifier: Keys.leaderBoardID)
-        score.value = Int64(spinCount)
-        GKScore.report([score]) { error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("Score submitted to your Leaderboard!")
-                OperationQueue.main.addOperation {
-                    let gcVC = GKGameCenterViewController()
-                    gcVC.gameCenterDelegate = self
-                    gcVC.viewState = .leaderboards
-                    gcVC.leaderboardIdentifier = Keys.leaderBoardID
-                    self.motionManager.stopDeviceMotionUpdates()
-                    self.present(gcVC, animated: true, completion: nil)
-                }
-            }
-        }
-        
+        reportScore(shouldShowLeaderboard: true)
     }
     
     @IBAction func spinnersButtonTapped() {
@@ -181,7 +167,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func unwindToMain(_ segue: UIStoryboardSegue) {
-        configureMotionManager(with: currentSpinner)
+        configureMotionManager()
     }
     
 }
@@ -216,7 +202,7 @@ private extension ViewController {
     
     // MARK: - Motion manager
     
-    func configureMotionManager(with spinner: Spinner) {
+    func configureMotionManager() {
         motionManager = CMMotionManager()
         if motionManager.isDeviceMotionAvailable {
             motionManager.deviceMotionUpdateInterval = 0.01
@@ -243,7 +229,7 @@ private extension ViewController {
                     if let physicsBody = self.spinnerNode.physicsBody {
                         let rpm = abs(Int(physicsBody.angularVelocity * 30/CGFloat.pi))
                         let diff: CGFloat = (CGFloat(rpm) * 0.001)
-                        self.circleView.backgroundColor = UIColor(red: spinner.red + diff, green: spinner.green + diff, blue: spinner.blue, alpha: 1.0)
+                        self.circleView.backgroundColor = UIColor(red: self.currentSpinner.red + diff, green: self.currentSpinner.green + diff, blue: self.currentSpinner.blue + diff, alpha: 1.0)
                         self.xLabel.text = "\(rpm) spins/min"
                     }
                     
@@ -285,7 +271,37 @@ private extension ViewController {
             }
         }
     }
+    
+    // MARK: - Score reporting
+    
+    func reportScore(shouldShowLeaderboard: Bool) {
+        let score = GKScore(leaderboardIdentifier: Keys.leaderBoardID)
+        score.value = Int64(spinCount)
+        GKScore.report([score]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Score submitted to your Leaderboard!")
+                OperationQueue.main.addOperation {
+                    if shouldShowLeaderboard {
+                        self.showLeaderboard()
+                    }
+                }
+            }
+        }
+    }
+    
+    func showLeaderboard() {
+        let gcVC = GKGameCenterViewController()
+        gcVC.gameCenterDelegate = self
+        gcVC.viewState = .leaderboards
+        gcVC.leaderboardIdentifier = Keys.leaderBoardID
+        self.motionManager.stopDeviceMotionUpdates()
+        self.present(gcVC, animated: true, completion: nil)
+    }
+    
 }
+
 
 
 // MARK: - Game center controller delegate
@@ -294,7 +310,7 @@ extension ViewController: GKGameCenterControllerDelegate {
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
-        configureMotionManager(with: currentSpinner)
+        configureMotionManager()
     }
     
 }

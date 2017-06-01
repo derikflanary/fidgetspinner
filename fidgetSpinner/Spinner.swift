@@ -18,6 +18,9 @@ struct Spinner {
     var green: CGFloat
     var blue: CGFloat
     var cost: Int
+    var color: UIColor {
+        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
     
     init() {
         title = "Default"
@@ -51,14 +54,14 @@ let spinnerKeys = ["default",
                    "mindtrip"]
 
 let spinners: [String: Spinner] = [ "default": Spinner(),
-                                    "army": Spinner(title: "Sergeant", mass: 2.0, image: #imageLiteral(resourceName: "army"), red: 0.5, green: 0.5, blue: 0.5, cost: 2000),
-                                    "delic": Spinner(title: "Wild Thing", mass: 1.0, image: #imageLiteral(resourceName: "delic"), red: 0.5, green: 0.5, blue: 0.7, cost: 1000),
-                                    "prez": Spinner(title: "Prez", mass: 4.0, image: #imageLiteral(resourceName: "trump"), red: 0.5, green: 0.5, blue: 0.7, cost: 10000),
-                                    "tribal": Spinner(title: "Tribal", mass: 0.75, image: #imageLiteral(resourceName: "tribal"), red: 0.9, green: 0.5, blue: 0.7, cost: 5000),
-                                    "usa": Spinner(title: "USA", mass: 1.5, image: #imageLiteral(resourceName: "usa"), red: 0.5, green: 0.0, blue: 0.0, cost: 20000),
-                                    "hotdog": Spinner(title: "Hotdogs", mass: 0.9, image: #imageLiteral(resourceName: "hotdog"), red: 0.9, green: 0.5, blue: 0.9, cost: 50000),
-                                    "cat": Spinner(title: "Can Haz Catz", mass: 1.25, image: #imageLiteral(resourceName: "cat"), red: 0.5, green: 0.5, blue: 0.7, cost: 100000),
-                                    "mindtrip": Spinner(title: "Mind Trip", mass: 0.5, image: #imageLiteral(resourceName: "mindtrip"), red: 0.9, green: 0.9, blue: 0.7, cost: 1000000)
+                                    "army": Spinner(title: "Sergeant", mass: 2.0, image: #imageLiteral(resourceName: "army"), red: 0.05, green: 0.05, blue: 0.05, cost: 10000),
+                                    "delic": Spinner(title: "Wild Thing", mass: 1.0, image: #imageLiteral(resourceName: "delic"), red: 0.43, green: 0.96, blue: 0.19, cost: 5000),
+                                    "prez": Spinner(title: "Prez", mass: 4.0, image: #imageLiteral(resourceName: "trump"), red: 0.93, green: 0.82, blue: 0.45, cost: 50000),
+                                    "tribal": Spinner(title: "Tribal", mass: 0.75, image: #imageLiteral(resourceName: "tribal"), red: 0.36, green: 0.01, blue: 0.02, cost: 20000),
+                                    "usa": Spinner(title: "USA", mass: 1.5, image: #imageLiteral(resourceName: "usa"), red: 0.69, green: 0.13, blue: 0.20, cost: 100000),
+                                    "hotdog": Spinner(title: "Hotdogs", mass: 0.9, image: #imageLiteral(resourceName: "hotdog"), red: 0.9, green: 0.27, blue: 0.17, cost: 200000),
+                                    "cat": Spinner(title: "Can Haz Catz", mass: 1.25, image: #imageLiteral(resourceName: "cat"), red: 0.99, green: 0.64, blue: 0.65, cost: 500000),
+                                    "mindtrip": Spinner(title: "Mind Trip", mass: 0.5, image: #imageLiteral(resourceName: "mindtrip"), red: 0.26, green: 0.43, blue: 0.78, cost: 1000000)
 ]
 
 

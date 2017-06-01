@@ -28,12 +28,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="ulc-nh-R9Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock all spinners now for just $0.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1C4-zr-YNJ">
+                                            <rect key="frame" x="61.5" y="8" width="252.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LtT-fl-8vK">
+                                            <rect key="frame" x="144.5" y="86" width="86" height="26"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <state key="normal" title="Restore Purchase">
+                                                <color key="titleColor" red="0.62745098040000002" green="0.65098039220000004" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="restorePurchaseButtonTapped" destination="FXx-Xv-zvh" eventType="touchUpInside" id="E2B-lj-dYj"/>
+                                            </connections>
+                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkL-rc-bbn">
-                                            <rect key="frame" x="29.5" y="8" width="316" height="40"/>
-                                            <color key="backgroundColor" red="0.001953125" green="0.78615993920000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <rect key="frame" x="29" y="40" width="316" height="40"/>
+                                            <color key="backgroundColor" red="0.0" green="0.78431372549019607" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="JTV-af-Cgq"/>
                                             </constraints>
@@ -46,36 +62,20 @@
                                                 <action selector="unlockAllSpinnersTapped" destination="FXx-Xv-zvh" eventType="touchUpInside" id="Ndi-CJ-cTv"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock all spinners now for just $0.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1C4-zr-YNJ">
-                                            <rect key="frame" x="61.5" y="56" width="252.5" height="19.5"/>
-                                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LtT-fl-8vK">
-                                            <rect key="frame" x="144.5" y="75.5" width="86" height="26"/>
-                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
-                                            <state key="normal" title="Restore Purchase">
-                                                <color key="titleColor" red="0.62745098040000002" green="0.65098039220000004" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="restorePurchaseButtonTapped" destination="FXx-Xv-zvh" eventType="touchUpInside" id="E2B-lj-dYj"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="LtT-fl-8vK" firstAttribute="top" secondItem="1C4-zr-YNJ" secondAttribute="bottom" id="2Aq-v9-JSd"/>
                                         <constraint firstItem="1C4-zr-YNJ" firstAttribute="centerX" secondItem="RkL-rc-bbn" secondAttribute="centerX" id="3vU-q8-ej6"/>
-                                        <constraint firstItem="1C4-zr-YNJ" firstAttribute="top" secondItem="RkL-rc-bbn" secondAttribute="bottom" constant="8" id="6jA-0l-8FU"/>
+                                        <constraint firstItem="RkL-rc-bbn" firstAttribute="centerY" secondItem="ulc-nh-R9Z" secondAttribute="centerY" id="IeM-FB-1M4"/>
                                         <constraint firstItem="RkL-rc-bbn" firstAttribute="centerX" secondItem="ulc-nh-R9Z" secondAttribute="centerX" id="QNT-3P-mWZ"/>
-                                        <constraint firstItem="RkL-rc-bbn" firstAttribute="top" secondItem="ulc-nh-R9Z" secondAttribute="top" constant="8" id="kdf-pi-eMP"/>
+                                        <constraint firstAttribute="bottom" secondItem="LtT-fl-8vK" secondAttribute="bottom" constant="8" id="czD-gp-a3g"/>
                                         <constraint firstItem="LtT-fl-8vK" firstAttribute="centerX" secondItem="ulc-nh-R9Z" secondAttribute="centerX" id="o0s-Dg-iCd"/>
+                                        <constraint firstItem="1C4-zr-YNJ" firstAttribute="top" secondItem="ulc-nh-R9Z" secondAttribute="top" constant="8" id="wSC-5z-qH6"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SpinnerCell" rowHeight="80" id="EFN-so-tYi" customClass="SpinnerCell" customModule="fidgetSpinner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="157.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="175.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EFN-so-tYi" id="PhS-GS-Vax">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
