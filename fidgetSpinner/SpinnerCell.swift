@@ -14,6 +14,7 @@ class SpinnerCell: UITableViewCell, ReusableView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var unlockLabel: UILabel!
     @IBOutlet weak var lockImageView: UIImageView!
+    @IBOutlet weak var specialLabel: UILabel!
 
     func configure(with spinner: Spinner?, isUnlocked: Bool) {
         guard let spinner = spinner else { return }
@@ -28,7 +29,15 @@ class SpinnerCell: UITableViewCell, ReusableView {
             contentView.alpha = 0.4
             lockImageView.isHidden = false
             unlockLabel.isHidden = false
-            unlockLabel.text = "Unlock at \(spinner.cost) spins"
+            switch spinner.unlockType {
+            case .spin:
+                unlockLabel.text = "Unlock at \(spinner.cost) spins"
+            case .review:
+                break
+            case .share:
+                unlockLabel.text = "Unlock at \(spinner.cost) spins"
+                specialLabel.text = "Or unlock by sharing"
+            }
         }
     }
 

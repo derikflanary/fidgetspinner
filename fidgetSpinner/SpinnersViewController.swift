@@ -37,6 +37,9 @@ class SpinnersViewController: UIViewController {
         }
         tableViewDataSource.allSpinnersUnlocked = allSpinnersPurchased
         tableView.reloadData()
+        if spins >= 11000 {
+            SKStoreReviewController.requestReview()
+        }
     }
 
     @IBAction func restorePurchaseButtonTapped() {
@@ -83,10 +86,28 @@ private extension SpinnersViewController {
 extension SpinnersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let newKey = spinnerKeys[indexPath.row]
-        UserDefaults.standard.set(newKey, forKey: "spinner")
-        tableView.reloadData()
-        dismiss(animated: true, completion: nil)
+        guard let spinner = spinners[newKey] else { return }
+        switch spinner.unlockType {
+        case .spin:
+            if spins >= spinner.cost {
+                UserDefaults.standard.set(newKey, forKey: "spinner")
+                tableView.reloadData()
+                dismiss(animated: true, completion: nil)
+            }
+        case .review:
+            break
+        case .share:
+            let shared = UserDefaults.standard.bool(forKey: Keys.shared)
+            if shared {
+                UserDefaults.standard.set(newKey, forKey: "spinner")
+                tableView.reloadData()
+                dismiss(animated: true, completion: nil)
+            } else {
+                showOkAlert(with: "Share to Unlock!", message: "To share this app just return to the main screen and click on the button in the upper left hand corner. Thank you!")
+            }
+        }
     }
     
 }

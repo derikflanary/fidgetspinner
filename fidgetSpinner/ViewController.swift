@@ -160,6 +160,7 @@ class ViewController: UIViewController {
             case .cancelled:
                 print("cancelled")
             case .done:
+                UserDefaults.standard.set(true, forKey: Keys.shared)
                 print("success")
             }
         }

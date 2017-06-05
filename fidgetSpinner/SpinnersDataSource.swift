@@ -23,8 +23,15 @@ class SpinnersDataSource: NSObject, UITableViewDataSource {
         guard let spinner = spinners[key] else { return cell }
         var unlocked = allSpinnersUnlocked
         if !unlocked {
-            if spins >= spinner.cost {
-                unlocked = true
+            switch spinner.unlockType {
+            case .spin:
+                if spins >= spinner.cost {
+                    unlocked = true
+                }
+            case .review:
+                break
+            case .share:
+                unlocked = UserDefaults.standard.bool(forKey: Keys.shared)
             }
         }
         cell.configure(with: spinner, isUnlocked: unlocked)

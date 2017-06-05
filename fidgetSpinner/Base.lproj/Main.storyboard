@@ -78,7 +78,7 @@
                                         <rect key="frame" x="0.0" y="175.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EFN-so-tYi" id="PhS-GS-Vax">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fidget2" translatesAutoresizingMaskIntoConstraints="NO" id="91l-bc-xqm">
@@ -101,12 +101,18 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lockFilled" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-PE-BCP">
-                                                    <rect key="frame" x="162.5" y="14.5" width="50" height="50"/>
+                                                    <rect key="frame" x="167.5" y="19.5" width="40" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="YHN-e8-65L"/>
-                                                        <constraint firstAttribute="width" constant="50" id="nQu-Ua-nvM"/>
+                                                        <constraint firstAttribute="height" constant="40" id="YHN-e8-65L"/>
+                                                        <constraint firstAttribute="width" constant="40" id="nQu-Ua-nvM"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCn-Sg-dY0">
+                                                    <rect key="frame" x="342" y="60" width="25" height="17.5"/>
+                                                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Fcc-9x-ANt" firstAttribute="leading" secondItem="91l-bc-xqm" secondAttribute="trailing" constant="8" id="IB8-zM-1lK"/>
@@ -115,13 +121,16 @@
                                                 <constraint firstItem="hfU-PE-BCP" firstAttribute="centerY" secondItem="PhS-GS-Vax" secondAttribute="centerY" id="N9Y-a1-EDb"/>
                                                 <constraint firstItem="Taa-vv-9Bx" firstAttribute="top" secondItem="91l-bc-xqm" secondAttribute="top" id="Pnq-Gi-n4V"/>
                                                 <constraint firstItem="Fcc-9x-ANt" firstAttribute="centerY" secondItem="91l-bc-xqm" secondAttribute="centerY" id="XwC-pO-DLS"/>
+                                                <constraint firstItem="XCn-Sg-dY0" firstAttribute="top" secondItem="Fcc-9x-ANt" secondAttribute="bottom" constant="8" id="YCk-E6-mC3"/>
                                                 <constraint firstItem="Taa-vv-9Bx" firstAttribute="trailing" secondItem="Fcc-9x-ANt" secondAttribute="trailing" id="YHu-MD-shp"/>
                                                 <constraint firstItem="91l-bc-xqm" firstAttribute="centerY" secondItem="PhS-GS-Vax" secondAttribute="centerY" id="ave-No-Mev"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Fcc-9x-ANt" secondAttribute="trailing" id="dlo-PN-Cv8"/>
+                                                <constraint firstItem="XCn-Sg-dY0" firstAttribute="trailing" secondItem="Fcc-9x-ANt" secondAttribute="trailing" id="khG-jO-AO4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lockImageView" destination="hfU-PE-BCP" id="Gdg-R6-Ieu"/>
+                                            <outlet property="specialLabel" destination="XCn-Sg-dY0" id="tr8-wa-gP9"/>
                                             <outlet property="spinnerImageView" destination="91l-bc-xqm" id="njl-k9-nIf"/>
                                             <outlet property="titleLabel" destination="Fcc-9x-ANt" id="Sxy-8F-4Vu"/>
                                             <outlet property="unlockLabel" destination="Taa-vv-9Bx" id="1BL-8i-6T2"/>
