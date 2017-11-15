@@ -70,7 +70,7 @@ let spinners: [String: Spinner] = [ "default": Spinner(),
                                     "usa": Spinner(title: "USA", mass: 1.5, image: #imageLiteral(resourceName: "usa"), red: 0.69, green: 0.13, blue: 0.20, cost: 100000),
                                     "hotdog": Spinner(title: "Hotdogs", mass: 0.9, image: #imageLiteral(resourceName: "hotdog"), red: 0.9, green: 0.27, blue: 0.17, cost: 150000),
                                     "cat": Spinner(title: "Can Haz Catz", mass: 1.25, image: #imageLiteral(resourceName: "cat"), red: 0.99, green: 0.64, blue: 0.65, cost: 250000, unlockType: .share),
-                                    "mindtrip": Spinner(title: "Mind Trip", mass: 0.5, image: #imageLiteral(resourceName: "mindtrip"), red: 0.26, green: 0.43, blue: 0.78, cost: 500000)
+                                    "mindtrip": Spinner(title: "Mind Trip", mass: 0.5, image: #imageLiteral(resourceName: "mindtrip"), red: 0.26, green: 0.43, blue: 0.78, cost: 250000)
 ]
 
 

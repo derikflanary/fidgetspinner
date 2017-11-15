@@ -11,6 +11,7 @@ import CoreMotion
 import SpriteKit
 import Social
 import GameKit
+import Accounts
 
 class ViewController: UIViewController {
     
@@ -145,7 +146,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func restartButtonTapped() {
-        guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) else { return }
         guard let socialController = SLComposeViewController(forServiceType: SLServiceTypeFacebook) else { return }
         
         UIGraphicsBeginImageContext(view.frame.size)
@@ -153,15 +153,20 @@ class ViewController: UIViewController {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         socialController.add(image)
-        socialController.setInitialText("I've spun my fidget phone \(spinCount) times already.")
+        socialController.setInitialText("I've spun my fidget phone \(spinCount) times already. How many can you get?  https://itunes.apple.com/us/app/fidget-spinner-app-awesome-and-ad-free/id1241699015?ls=1&mt=8")
         socialController.completionHandler = {
             (result: SLComposeViewControllerResult) in
             switch result {
             case .cancelled:
                 print("cancelled")
             case .done:
-                UserDefaults.standard.set(true, forKey: Keys.shared)
-                print("success")
+                if !UserDefaults.standard.bool(forKey: Keys.shared) {
+                    UserDefaults.standard.set(true, forKey: Keys.shared)
+                    print("success")
+                    DispatchQueue.main.async {
+                        self.showOkAlert(with: "Shared", message: "Thank you for sharing. You have now unlocked a new spinner. Go check it out!")
+                    }                    
+                }
             }
         }
         self.present(socialController, animated: true, completion: nil)
@@ -328,6 +333,19 @@ extension Double {
         }
     }
 
+}
+
+extension NSMutableAttributedString {
+    
+    public func setAsLink(textToFind:String, linkURL:String) -> Bool {
+        
+        let foundRange = self.mutableString.range(of: textToFind)
+        if foundRange.location != NSNotFound {
+            self.addAttribute(NSLinkAttributeName, value: linkURL, range: foundRange)
+            return true
+        }
+        return false
+    }
 }
 
 

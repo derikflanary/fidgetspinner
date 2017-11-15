@@ -37,8 +37,11 @@ class SpinnersViewController: UIViewController {
         }
         tableViewDataSource.allSpinnersUnlocked = allSpinnersPurchased
         tableView.reloadData()
-        if spins >= 11000 {
+        let spinsForReview = UserDefaults.standard.integer(forKey: Keys.spinsForReview)
+        print(spinsForReview)
+        if spins >= spinsForReview {
             SKStoreReviewController.requestReview()
+            UserDefaults.standard.set(spinsForReview + 1000, forKey: Keys.spinsForReview)
         }
     }
 
@@ -91,7 +94,7 @@ extension SpinnersViewController: UITableViewDelegate {
         guard let spinner = spinners[newKey] else { return }
         switch spinner.unlockType {
         case .spin:
-            if spins >= spinner.cost {
+            if UserDefaults.standard.bool(forKey: Keys.allSpinnersPurchased) || spins >= spinner.cost {
                 UserDefaults.standard.set(newKey, forKey: "spinner")
                 tableView.reloadData()
                 dismiss(animated: true, completion: nil)

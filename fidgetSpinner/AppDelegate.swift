@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        var spins = UserDefaults.standard.integer(forKey: Keys.spinsForReview)
+        if spins == 0 {
+            spins = UserDefaults.standard.integer(forKey: Keys.spins)
+            UserDefaults.standard.set(spins, forKey: Keys.spinsForReview)
+        }
+        
         return true
     }
 

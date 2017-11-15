@@ -32,6 +32,7 @@ class SpinnerCell: UITableViewCell, ReusableView {
             switch spinner.unlockType {
             case .spin:
                 unlockLabel.text = "Unlock at \(spinner.cost) spins"
+                specialLabel.text = ""
             case .review:
                 break
             case .share:

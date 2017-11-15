@@ -18,5 +18,6 @@ struct Keys {
     static let leaderBoardID = "com.fidgetphone.topspinner"
     static let shared = "shared"
     static let reviewed = "reviewed"
+    static let spinsForReview = "spinsForReview"
     
 }
